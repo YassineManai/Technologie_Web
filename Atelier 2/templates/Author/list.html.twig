@@ -1,0 +1,31 @@
+<p>{{t}}</p>
+{% if A|length != 0 %}
+{%set total=0 %}
+    <table>
+        <tr>
+            <td>ID</td>
+     
+            <td>Userame</td>
+            <td>Email</td>
+            <td>Nb_books</td>
+            
+        </tr>
+       
+        {% for element in A %}
+       {% set total = total + element.nb_books%}
+        <tr>
+            <td>{{element.id}}</td>
+            
+            <td>{{element.username|upper}}</td>
+            <td>{{element.email}}</td>
+            <td>{{element.nb_books}}</td>
+            <td><a href="{{path('app_detailsAuthor',{'id':element.id})}}"> Details</td>
+           
+        </tr>
+        {%endfor%}
+    </table>
+{% else %}
+    <p>pas d'element</p>
+{% endif %}
+<span> Author Number : {{ A|length }}</span><br>
+<span> Total Books : {{ total }}</span>
